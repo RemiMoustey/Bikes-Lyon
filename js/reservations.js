@@ -76,6 +76,7 @@ if (sessionStorage.getItem("minutes") !== "" && sessionStorage.getItem("seconds"
 }
 
 form.addEventListener("submit", function(e) {
+	clearInterval(intervalId);
 	e.preventDefault();
 	let name = form.elements.name.value;
 	let firstname = form.elements.firstname.value;
