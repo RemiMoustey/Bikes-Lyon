@@ -15,7 +15,6 @@ class MapBikes {
 
 		this.background = this.getBackgroundMap();
 		this.stations = this.recupStations();
-		this.recupStations();
 	}
 
 	getBackgroundMap() {
