@@ -38,7 +38,7 @@ class Reservation {
 		}
 	}
 
-	async buildReservation() {
+	buildReservation() {
 		$('#bloc_timer').text("Vélo réservé à la station " + sessionStorage.getItem("station") + " par " + localStorage.getItem("firstname") + " " + localStorage.getItem("name"));
 		$('#submit').attr("disabled", "");
 		let counterMinutes = sessionStorage.getItem("minutes");
@@ -64,20 +64,6 @@ class Reservation {
 		$('#bloc_timer').append(minutes, "min ");
 		$('#bloc_timer').append(seconds, "s");
 		intervalId = setInterval(this.reduceTime, 1000);
-	}
-
-	async getStations() {
-		try {
-			const response = await fetch("https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=28739a9e4d6cd592b4a215b24a880460621ca811");
-			if(response.ok) {
-				const data = await response.json();
-				return data;
-			} else {
-				console.error("Retour du serveur : ", response.status);
-			}
-		} catch (e) {
-			console.log(e);
-		}
 	}
 }
 
