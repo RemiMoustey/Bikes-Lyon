@@ -8,11 +8,18 @@ class Carousel {
 		this.container.appendChild(document.getElementById("carousel_item"));
 		this.slides.appendChild(this.container);
 		document.getElementById("bloc_page").insertBefore(this.element, document.getElementById("map_panel"));
-		this.items = [this.getItem(this.getImage("images/1.jpg", "", "item_1"), "Mon titre 1", "Un peu de texte pour tester le carousel"),
-		this.getItem(this.getImage("images/2.jpg", "", "item_2"), "Mon titre 2", "Un peu de texte pour tester le carousel"),
-		this.getItem(this.getImage("images/3.jpg", "", "item_3"), "Mon titre 3", "Un peu de texte pour tester le carousel"),
-		this.getItem(this.getImage("images/4.jpg", "", "item_4"), "Mon titre 4", "Un peu de texte pour tester le carousel"),
-		this.getItem(this.getImage("images/5.jpg", "", "item_5"), "Mon titre 5", "Un peu de texte pour tester le carousel")];
+		this.items = [this.getItem(this.getImage("images/1.jpg", "Panneau d'enfants sur un vélo légendé 'Welcome'", "item_1"),
+		"Bienvenue !", "Bienvenue sur standvelos-lyon.com ! Réservez dès maintenant votre vélo où vous le voulez !"),
+		this.getItem(this.getImage("images/2.png", "Pan de la carte du site et petit cartouche d'explication", "item_2"),
+		"Sélectionnez votre station", "Cliquez simplement sur la station où vous désirez réserver votre vélo sur la carte ci-dessous."),
+		this.getItem(this.getImage("images/3.png", "Formulaire à côté de la carte avec les champs 'Nom' et 'Prénom'", "item_3"),
+		"Entrez votre nom et votre prénom", "Entrez simplement votre nom et votre prénom dans le formulaire prévu à cet effet à côté de la carte."),
+		this.getItem(this.getImage("images/4.png", "Le champ de signature sous le formulaire", "item_4"),
+		"Signez", "Enfin, signez dans le cadre dédié à cet effet et cliquez sur 'Réservez'."),
+		this.getItem(this.getImage("images/5.png", "Compteur de 20 minutes qui symbolise le temps de la réservation", "item_5"),
+		"Votre vélo vous attend !", "Vous n'avez plus qu'à vous rendre sur place ! Le temps restant de votre réservation s'affiche sur votre écran !")];
+		this.animationId = null;
+		this.animationStop = true;
 		this.createNavigation();
 	}
 
@@ -28,24 +35,23 @@ class Carousel {
 		this.element.appendChild(this.slides);
 
 		let pauseButton = this.createDivWithClass("pause_button");
-		pauseButton.appendChild(document.createElement("button"));
+		pauseButton.classList.add("fas");
+		pauseButton.classList.add("fa-pause");
 		this.element.appendChild(pauseButton);
-		document.querySelector("button").classList.add("fas");
-		document.querySelector("button").classList.add("fa-pause");
 		let play = true;
 		let callNext = this.next.bind(this);
 		let callPrev = this.prev.bind(this);
 		let intervalId = setInterval(callNext, 5000);
-		document.querySelector("button").addEventListener("click", function () {
+		document.querySelector(".pause_button").addEventListener("click", function () {
 			if(play) {
 				clearInterval(intervalId);
 				play = false;
-				document.querySelector("button").classList.replace("fa-pause", "fa-play");
+				document.querySelector(".pause_button").classList.replace("fa-pause", "fa-play");
 				return;
 			}
 			intervalId = setInterval(callNext, 5000);
 			play = true;
-			document.querySelector("button").classList.replace("fa-play", "fa-pause");
+			document.querySelector(".pause_button").classList.replace("fa-play", "fa-pause");
 		});
 
 		nextArrow.addEventListener("click", callNext);
@@ -61,21 +67,18 @@ class Carousel {
 		});
 	}
 
-	newItem(range) {
-		let item = document.createElement("div");
-		item.id = "carousel_item";
-		item.classList.add("new_carousel_item")
-		let image = this.createDivWithClass("carousel_image");
-		let text = this.createDivWithClass("carousel_text");
-		item.appendChild(image);
-		item.appendChild(text);
-		image.appendChild(document.createElement("img"));
-		image.querySelector("img").setAttribute("src", this.items[range].Image.src);
-		image.querySelector("img").setAttribute("alt", this.items[range].Image.alt);
-		image.querySelector("img").classList.add(this.items[range].Image.classHTML);
-		text.appendChild(document.createElement("h3")).textContent = this.items[range].title;
-		text.appendChild(document.createElement("p")).textContent = this.items[range].description;
-		document.querySelector(".carousel_container").replaceChild(item, document.getElementById("carousel_item"));
+	prev() {
+		if(this.animationStop === true) {
+			this.animationStop = false;
+			this.determinePrevNewItem();
+		}
+	}
+
+	next() {
+		if(this.animationStop === true) {
+			this.animationStop = false;
+			this.determineNextNewItem();
+		}
 	}
 
 	determinePrevNewItem() {
@@ -108,40 +111,21 @@ class Carousel {
 		}
 	}
 
-	prev() {
-		document.querySelector("button").setAttribute("disabled", "");
-		this.directionItem(1);	
-	}
-
-	next() {
-		document.querySelector("button").setAttribute("disabled", "");
-		this.directionItem(-1);
-	}
-
-	directionItem(direction) {
-		let xItem = parseFloat(getComputedStyle(document.getElementById("carousel_item")).left);
-		let xContainerMax = parseFloat(getComputedStyle(document.querySelector(".carousel")).width);
-		let vitesse = 70;
-		document.getElementById("carousel_item").style.left = (xItem + direction * vitesse) + "px";
-		if(direction > 0) {
-			if(xItem < xContainerMax) {
-				this.animationId = requestAnimationFrame(this.prev.bind(this));
-			}
-			else {
-				cancelAnimationFrame(this.animationId);
-				this.determinePrevNewItem();
-			}
-		}
-
-		else {
-			if(-xItem < xContainerMax) {
-				this.animationId = requestAnimationFrame(this.next.bind(this));	
-			}
-			else {
-				cancelAnimationFrame(this.animationId);
-				this.determineNextNewItem();
-			}
-		}
+	newItem(range) {
+		let item = document.createElement("div");
+		item.id = "carousel_item";
+		item.classList.add("new_carousel_item")
+		let image = this.createDivWithClass("carousel_image");
+		let text = this.createDivWithClass("carousel_text");
+		item.appendChild(image);
+		item.appendChild(text);
+		image.appendChild(document.createElement("img"));
+		image.querySelector("img").setAttribute("src", this.items[range].Image.src);
+		image.querySelector("img").setAttribute("alt", this.items[range].Image.alt);
+		image.querySelector("img").classList.add(this.items[range].Image.classHTML);
+		text.appendChild(document.createElement("h3")).textContent = this.items[range].title;
+		text.appendChild(document.createElement("p")).textContent = this.items[range].description;
+		document.querySelector(".carousel_container").replaceChild(item, document.getElementById("carousel_item"));
 	}
 
 	prevNew() {
@@ -162,20 +146,20 @@ class Carousel {
 		document.querySelector(".new_carousel_item").style.left = xItem + direction * vitesse + "px";
 		if(direction > 0) {
 			if(xItem < -70) {
-				animationId = requestAnimationFrame(this.prevNew.bind(this));
+				this.animationId = requestAnimationFrame(this.prevNew.bind(this));
 			} else {
-				cancelAnimationFrame(animationId);
-				document.querySelector("button").removeAttribute("disabled");
+				cancelAnimationFrame(this.animationId);
+				this.animationStop = true;
 				document.querySelector(".new_carousel_item").classList.remove("new_carousel_item");
 			}
 		}
 
 		else {
 			if(xItem > 70) {
-				animationId = requestAnimationFrame(this.nextNew.bind(this));
+				this.animationId = requestAnimationFrame(this.nextNew.bind(this));
 			} else {
-				cancelAnimationFrame(animationId);
-				document.querySelector("button").removeAttribute("disabled");
+				cancelAnimationFrame(this.animationId);
+				this.animationStop = true;
 				document.querySelector(".new_carousel_item").classList.remove("new_carousel_item");
 			}
 		}
