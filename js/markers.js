@@ -50,7 +50,7 @@ class MapBikes {
 				let marker = L.marker([station.position.lat, station.position.lng], {icon: this.greenIcon});
 				marker.addTo(this.background);
 				marker.on("click", function() {
-					$('#closed_station').text('');
+					$('#red_station').text('');
 					$('#address').text(station.address);
 					$('#number_places').text(station.bike_stands + " places");
 					if(station.available_bikes === 1) {
