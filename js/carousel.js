@@ -121,25 +121,24 @@ class Carousel {
 	directionItem(direction) {
 		let xItem = parseFloat(getComputedStyle(document.getElementById("carousel_item")).left);
 		let xContainerMax = parseFloat(getComputedStyle(document.querySelector(".carousel")).width);
-		let animationId = null;
 		let vitesse = 70;
 		document.getElementById("carousel_item").style.left = (xItem + direction * vitesse) + "px";
 		if(direction > 0) {
 			if(xItem < xContainerMax) {
-				animationId = requestAnimationFrame(this.prev.bind(this));
+				this.animationId = requestAnimationFrame(this.prev.bind(this));
 			}
 			else {
-				cancelAnimationFrame(animationId);
+				cancelAnimationFrame(this.animationId);
 				this.determinePrevNewItem();
 			}
 		}
 
 		else {
 			if(-xItem < xContainerMax) {
-				animationId = requestAnimationFrame(this.next.bind(this));	
+				this.animationId = requestAnimationFrame(this.next.bind(this));	
 			}
 			else {
-				cancelAnimationFrame(animationId);
+				cancelAnimationFrame(this.animationId);
 				this.determineNextNewItem();
 			}
 		}
@@ -159,7 +158,6 @@ class Carousel {
 			xItem = -xItem;
 		}
 		let xContainerLeft = parseFloat(getComputedStyle(document.querySelector(".carousel_container")).left);
-		let animationId = null;
 		let vitesse = 70;
 		document.querySelector(".new_carousel_item").style.left = xItem + direction * vitesse + "px";
 		if(direction > 0) {

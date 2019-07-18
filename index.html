@@ -22,11 +22,11 @@
 		<div id="bloc_page">
 				<div id="carousel_item">
 					<div class="carousel_image">
-						<img src="images/1.jpg" alt="" class="item_1" />
+						<img src="images/1.jpg" alt="Panneau d'enfants sur un vélo légendé 'Welcome'"  class="item_1" />
 					</div>
 					<div class="carousel_text">
-						<h3 class="carousel_title">Mon titre 1</h3>
-						<p>Ici, une petite description pour tester le carousel</p>
+						<h3 class="carousel_title">Bienvenue !</h3>
+						<p>Bienvenue sur standvelos-lyon.com ! Réservez dès maintenant votre vélo où vous le voulez !</p>
 					</div>
 				</div>
 			<div id="map_panel">
@@ -50,18 +50,23 @@
 									<label for="firstname" >Prénom : </label>
 									<input type="text" name="firstname" id="firstname" required />
 								</p>
-								<input type="submit" value="Réserver" id="submit" disabled />
+								<div id="signature">
+									<h4>Signature</h4>
+									<canvas width="150" height="150"></canvas>
+									<button type="button" id="clear">Effacer</button>
+								</div>
+								<div><input type="submit" value="Réserver" id="submit" disabled /></div>
 							</form>
+							<p id="bloc_timer"></p>
 						</div>
 					</div>
 				</div>
-				<canvas id="tutoriel" width="150" height="150"><i class="fas fa-file-signature"></i></canvas>
-				<p id="bloc_timer"></p>
 			</div>
 		</div>
 
 		<script src="js/map.js"></script>
 		<script src="js/markers.js"></script>
+		<script src="js/canvas.js"></script>
 		<script src="js/reservations.js"></script>
 	</body>
 </html>

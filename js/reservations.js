@@ -84,5 +84,6 @@ form.addEventListener("submit", function(e) {
 	localStorage.setItem("firstname", firstname);
 	sessionStorage.setItem("minutes", 20);
 	sessionStorage.setItem("seconds", 0);
+	$('#signature').hide();
 	new Reservation(name, firstname);
 });

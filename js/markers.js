@@ -14,7 +14,7 @@ class MapBikes {
 		});
 
 		this.background = this.getBackgroundMap();
-		this.stations = this.recupStations();
+		this.recupStations();
 	}
 
 	getBackgroundMap() {
@@ -34,8 +34,7 @@ class MapBikes {
 		try {
 			const response = await fetch("https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=28739a9e4d6cd592b4a215b24a880460621ca811");
 			if(response.ok) {
-				const data = await response.json();
-				return data;
+				return response.json();
 			} else {
 				console.error("Retour du serveur : ", response.status);
 			}
@@ -60,7 +59,10 @@ class MapBikes {
 					else if(station.available_bikes > 1) {
 						$("#available_bikes").text(station.available_bikes + " vélos disponibles");
 					}
-					$('#submit').removeAttr("disabled");
+					$('#signature').show();
+					$('canvas').on("click", function() {
+						$('#submit').removeAttr("disabled");
+					});
 				});
 			}
 			else if(station.status === "CLOSED" || station.available_bikes === 0) {

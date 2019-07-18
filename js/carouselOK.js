@@ -8,11 +8,16 @@ class Carousel {
 		this.container.appendChild(document.getElementById("carousel_item"));
 		this.slides.appendChild(this.container);
 		document.getElementById("bloc_page").insertBefore(this.element, document.getElementById("map_panel"));
-		this.items = [this.getItem(this.getImage("images/1.jpg", "", "item_1"), "Mon titre 1", "Un peu de texte pour tester le carousel"),
-		this.getItem(this.getImage("images/2.jpg", "", "item_2"), "Mon titre 2", "Un peu de texte pour tester le carousel"),
-		this.getItem(this.getImage("images/3.jpg", "", "item_3"), "Mon titre 3", "Un peu de texte pour tester le carousel"),
-		this.getItem(this.getImage("images/4.jpg", "", "item_4"), "Mon titre 4", "Un peu de texte pour tester le carousel"),
-		this.getItem(this.getImage("images/5.jpg", "", "item_5"), "Mon titre 5", "Un peu de texte pour tester le carousel")];
+		this.items = [this.getItem(this.getImage("images/1.jpg", "Panneau d'enfants sur un vélo légendé 'Welcome'", "item_1"),
+		"Bienvenue !", "Bienvenue sur standvelos-lyon.com ! Réservez dès maintenant votre vélo où vous le voulez !"),
+		this.getItem(this.getImage("images/2.png", "Pan de la carte du site et petit cartouche d'explication", "item_2"),
+		"Sélectionnez votre station", "Cliquez simplement sur la station où vous désirez réserver votre vélo sur la carte ci-dessous."),
+		this.getItem(this.getImage("images/3.png", "Formulaire à côté de la carte avec les champs 'Nom' et 'Prénom'", "item_3"),
+		"Entrez votre nom et votre prénom", "Entrez simplement votre nom et votre prénom dans le formulaire prévu à cet effet à côté de la carte."),
+		this.getItem(this.getImage("images/4.png", "Le champ de signature sous le formulaire", "item_4"),
+		"Signez", "Enfin, signez dans le cadre dédié à cet effet et cliquez sur 'Réservez'"),
+		this.getItem(this.getImage("images/5.png", "Compteur de 20 minutes qui symbolise le temps de la réservation", "item_5"),
+		"Votre vélo vous attend !", "Vous n'avez plus qu'à vous rendre sur place ! Le temps restant de votre réservation s'affiche sur votre écran !")];
 		this.animationId = null;
 		this.animationStop = true;
 		this.createNavigation();
@@ -30,24 +35,23 @@ class Carousel {
 		this.element.appendChild(this.slides);
 
 		let pauseButton = this.createDivWithClass("pause_button");
-		pauseButton.appendChild(document.createElement("button"));
+		pauseButton.classList.add("fas");
+		pauseButton.classList.add("fa-pause");
 		this.element.appendChild(pauseButton);
-		document.querySelector("button").classList.add("fas");
-		document.querySelector("button").classList.add("fa-pause");
 		let play = true;
 		let callNext = this.next.bind(this);
 		let callPrev = this.prev.bind(this);
 		let intervalId = setInterval(callNext, 5000);
-		document.querySelector("button").addEventListener("click", function () {
+		document.querySelector(".pause_button").addEventListener("click", function () {
 			if(play) {
 				clearInterval(intervalId);
 				play = false;
-				document.querySelector("button").classList.replace("fa-pause", "fa-play");
+				document.querySelector(".pause_button").classList.replace("fa-pause", "fa-play");
 				return;
 			}
 			intervalId = setInterval(callNext, 5000);
 			play = true;
-			document.querySelector("button").classList.replace("fa-play", "fa-pause");
+			document.querySelector(".pause_button").classList.replace("fa-play", "fa-pause");
 		});
 
 		nextArrow.addEventListener("click", callNext);
@@ -66,7 +70,6 @@ class Carousel {
 	prev() {
 		if(this.animationStop === true) {
 			this.animationStop = false;
-			document.querySelector("button").setAttribute("disabled", "");
 			this.determinePrevNewItem();
 		}
 	}
@@ -74,7 +77,6 @@ class Carousel {
 	next() {
 		if(this.animationStop === true) {
 			this.animationStop = false;
-			document.querySelector("button").setAttribute("disabled", "");
 			this.determineNextNewItem();
 		}
 	}
@@ -148,7 +150,6 @@ class Carousel {
 			} else {
 				cancelAnimationFrame(this.animationId);
 				this.animationStop = true;
-				document.querySelector("button").removeAttribute("disabled");
 				document.querySelector(".new_carousel_item").classList.remove("new_carousel_item");
 			}
 		}
@@ -159,7 +160,6 @@ class Carousel {
 			} else {
 				cancelAnimationFrame(this.animationId);
 				this.animationStop = true;
-				document.querySelector("button").removeAttribute("disabled");
 				document.querySelector(".new_carousel_item").classList.remove("new_carousel_item");
 			}
 		}
