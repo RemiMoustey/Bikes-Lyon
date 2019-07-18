@@ -12,6 +12,10 @@ class Canvas {
 			this.canvas.addEventListener("touchstart", this.drawLine);
 			this.canvas.addEventListener("touchmove", this.moveLine);
 			$('#clear').on("click", this.clearDraw);
+			$("#submit").on("click", this.clearDraw);
+			$('#submit').on("click", function() {
+				$('#signature').hide();
+			});
 		}
 	}
 
