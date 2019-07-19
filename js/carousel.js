@@ -9,15 +9,15 @@ class Carousel {
 		this.slides.appendChild(this.container);
 		document.getElementById("bloc_page").insertBefore(this.element, document.getElementById("map_panel"));
 		this.items = [this.getItem(this.getImage("images/1.jpg", "Panneau d'enfants sur un vélo légendé 'Welcome'", "item_1"),
-		"Bienvenue !", "Bienvenue sur standvelos-lyon.com ! Réservez dès maintenant votre vélo où vous le voulez !"),
+		"Bienvenue sur standvelos-lyon.com !<br />Réservez dès maintenant votre vélo où vous le voulez !"),
 		this.getItem(this.getImage("images/2.png", "Pan de la carte du site et petit cartouche d'explication", "item_2"),
-		"Sélectionnez votre station", "Cliquez simplement sur la station où vous désirez réserver votre vélo sur la carte ci-dessous."),
+		"Cliquez sur la station où vous désirez réserver votre vélo sur la carte ci-dessous.<br />Des informations sur la station sont affichés à droite de la carte."),
 		this.getItem(this.getImage("images/3.png", "Formulaire à côté de la carte avec les champs 'Nom' et 'Prénom'", "item_3"),
-		"Entrez votre nom et votre prénom", "Entrez simplement votre nom et votre prénom dans le formulaire prévu à cet effet à côté de la carte."),
+		"Entrez votre nom et votre prénom dans le formulaire prévu à cet effet.<br />Ces champs sont obligatoires pour mener à bien votre réservation."),
 		this.getItem(this.getImage("images/4.png", "Le champ de signature sous le formulaire", "item_4"),
-		"Signez", "Enfin, signez dans le cadre dédié à cet effet et cliquez sur 'Réservez'."),
+		"Enfin, signez dans le cadre dédié à cet effet et cliquez sur 'Réservez'.<br />Votre vélo vous attend ! Toute nouvelle réservation annulera la précédente."),
 		this.getItem(this.getImage("images/5.png", "Compteur de 20 minutes qui symbolise le temps de la réservation", "item_5"),
-		"Votre vélo vous attend !", "Vous n'avez plus qu'à vous rendre sur place ! Le temps restant de votre réservation s'affiche sur votre écran !")];
+		"Vous n'avez plus qu'à vous rendre sur place !<br />Le temps restant de votre réservation s'affiche sur votre écran !")];
 		this.animationId = null;
 		this.animationStop = true;
 		this.createNavigation();
@@ -123,8 +123,7 @@ class Carousel {
 		image.querySelector("img").setAttribute("src", this.items[range].Image.src);
 		image.querySelector("img").setAttribute("alt", this.items[range].Image.alt);
 		image.querySelector("img").classList.add(this.items[range].Image.classHTML);
-		text.appendChild(document.createElement("h3")).textContent = this.items[range].title;
-		text.appendChild(document.createElement("p")).textContent = this.items[range].description;
+		text.appendChild(document.createElement("p")).innerHTML = this.items[range].description;
 		document.querySelector(".carousel_container").replaceChild(item, document.getElementById("carousel_item"));
 	}
 
@@ -169,8 +168,8 @@ class Carousel {
 		return new Image(src, alt, classHTML);
 	}
 
-	getItem(Image, title, description) {
-		return new Item(Image, title, description);
+	getItem(Image, description) {
+		return new Item(Image, description);
 	}
 
 	createDivWithClass(className) {

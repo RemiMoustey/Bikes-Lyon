@@ -1,8 +1,7 @@
 class Item {
 
-	constructor(Image, title, description) {
+	constructor(Image, description) {
 		this.Image = Image;
-		this.title = title;
 		this.description = description;
 	}
 }

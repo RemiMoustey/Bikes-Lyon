@@ -39,7 +39,7 @@ class Reservation {
 	}
 
 	buildReservation() {
-		$('#bloc_timer').text("Vélo réservé à la station " + sessionStorage.getItem("station") + " par " + localStorage.getItem("firstname") + " " + localStorage.getItem("name"));
+		$('#bloc_timer').html("Vélo réservé à la station <br />" + "<span id=\"address\">" + sessionStorage.getItem("station") + "</span>" + "<br />par " + localStorage.getItem("firstname") + " " + localStorage.getItem("name"));
 		$('#submit').attr("disabled", "");
 		let counterMinutes = sessionStorage.getItem("minutes");
 		let counterSeconds = sessionStorage.getItem("seconds");
@@ -72,10 +72,10 @@ $('#name').attr("value", localStorage.getItem("name"));
 $('#firstname').attr("value", localStorage.getItem("firstname"));
 if (sessionStorage.getItem("minutes") !== "" && sessionStorage.getItem("seconds") !== "" &&
 	sessionStorage.getItem("minutes") !== null && sessionStorage.getItem("seconds") !== null) {
-	new Reservation;
+	new Reservation(name, firstname);
 }
 
-form.addEventListener("submit", function(e) {
+$('#submit').on("click", function(e) {
 	clearInterval(intervalId); /* Pour qu'il n'y ait qu'un seul intervalle en cours */
 	e.preventDefault();
 	let name = form.elements.name.value;

@@ -10,7 +10,6 @@ class Canvas {
 			ctx.beginPath();
 		    this.canvas.addEventListener("mousedown", this.drawLine);
 			this.canvas.addEventListener("touchstart", this.drawLine);
-			this.canvas.addEventListener("touchmove", this.moveLine);
 			$('#clear').on("click", this.clearDraw);
 			$("#submit").on("click", this.clearDraw);
 			$('#submit').on("click", function() {
@@ -21,7 +20,6 @@ class Canvas {
 
 	getPosition = (event, canvas) => {
 		let position = canvas.getBoundingClientRect();
-		let eventEle = event.changedTouches? event.changedTouches[0]:event;
 		return {
 			posX : (event.clientX - position.left) / (position.right - position.left) * canvas.width,
 			posY : (event.clientY - position.top) / (position.bottom - position.top) * canvas.height
@@ -29,13 +27,14 @@ class Canvas {
 	}
 
 	drawLine = (e) => {
-		let canvas = e.currentTarget;
+		let canvas = e.target;
 		let position = this.getPosition(e, canvas);
 		canvas.posX = position.posX;
 		canvas.posY = position.posY;
 		canvas.bDraw = true;
 		this.canvas.addEventListener("mousemove", this.moveLine);
 		canvas.addEventListener("mouseup", this.stopDraw);
+		this.canvas.addEventListener("touchmove", this.moveLine);
 		canvas.addEventListener("touchend", this.stopDraw);
 	}
 
@@ -44,7 +43,7 @@ class Canvas {
 	}
 
 	moveLine = (e) => {
-		let canvas = e.currentTarget;
+		let canvas = e.target;
 		let ctx = null;
 		let pos = null;
 		if(canvas.bDraw === false) {
