@@ -60,6 +60,7 @@ class MapBikes {
 						$("#available_bikes").text(station.available_bikes + " vélos disponibles");
 					}
 					$('#signature').show();
+					$('#places_bikes').addClass("places_bikes_orange");
 					$('canvas').on("click", function() {
 						$('#submit').removeAttr("disabled");
 					});
@@ -72,6 +73,7 @@ class MapBikes {
 					$('#address').text(station.address);
 					$('#number_places').text('');
 					$("#available_bikes").text('');
+					$('#places_bikes').addClass("places_bikes_orange");
 					if(station.available_bikes === 0) {
 						$("#red_station").text('Cette station n\'a aucun vélo disponible.');
 					}
