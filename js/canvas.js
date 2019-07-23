@@ -3,19 +3,20 @@
 class Canvas {
 
 	constructor() {
-		this.canvas = document.querySelector("canvas");
+		this.canvas = $('canvas').get(0);
+
+		console.log(this.canvas);
 		if(this.canvas.getContext) {
 			const ctx = this.canvas.getContext("2d");
 			ctx.strokeRect(0, 0, 150, 150);
 			ctx.beginPath();
-		    this.canvas.addEventListener("mousedown", this.drawLine.bind(this));
-			this.canvas.addEventListener("touchstart", this.drawLine.bind(this));
+		    $('canvas').on("mousedown", this.drawLine.bind(this));
+			$('canvas').on("touchstart", this.drawLine.bind(this));
 			$('#clear').on("click", this.clearDraw.bind(this));
-			$("form").on("submit", this.clearDraw.bind(this));
+			$('form').on("submit", this.clearDraw.bind(this));
 			$('form').on("submit", function() {
 				$('#signature').hide();
 			});
-			this.canvas.toDataURL("image/png");
 		}
 	}
 
@@ -33,9 +34,9 @@ class Canvas {
 		canvas.posX = position.posX;
 		canvas.posY = position.posY;
 		canvas.bDraw = true;
-		this.canvas.addEventListener("mousemove", this.moveLine.bind(this));
+		$('canvas').on("mousemove", this.moveLine.bind(this));
 		canvas.addEventListener("mouseup", this.stopDraw.bind(this));
-		this.canvas.addEventListener("touchmove", this.moveLine.bind(this));
+		$('canvas').on("touchmove", this.moveLine.bind(this));
 		canvas.addEventListener("touchend", this.stopDraw.bind(this));
 	}
 

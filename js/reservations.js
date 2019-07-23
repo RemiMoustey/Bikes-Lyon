@@ -16,8 +16,8 @@ class Reservation {
 	}
 
 	reduceTime() {
-		let counterSecondsElt = document.getElementById("seconds");
-		let counterMinutesElt = document.getElementById("minutes");
+		let counterSecondsElt = $("#seconds").get(0);
+		let counterMinutesElt = $("#minutes").get(0);
 		let counterMinutesNum = Number(counterMinutesElt.textContent);
 		let counterSecondsNum = Number(counterSecondsElt.textContent);
 		if(counterSecondsNum > 0) {
@@ -68,7 +68,7 @@ class Reservation {
 	}
 }
 
-let form = document.querySelector("form");
+let form = $('form').get(0);
 $('#name').attr("value", localStorage.getItem("name"));
 $('#firstname').attr("value", localStorage.getItem("firstname"));
 if (sessionStorage.getItem("minutes") !== "" && sessionStorage.getItem("seconds") !== "" &&
@@ -76,7 +76,7 @@ if (sessionStorage.getItem("minutes") !== "" && sessionStorage.getItem("seconds"
 	new Reservation(name, firstname);
 }
 
-document.querySelector('form').addEventListener("submit", function(e) {
+$('form').on("submit", function(e) {
 	clearInterval(intervalId); /* Pour qu'il n'y ait qu'un seul intervalle en cours */
 	e.preventDefault();
 	let name = form.elements.name.value;
