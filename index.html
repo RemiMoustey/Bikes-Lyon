@@ -43,19 +43,16 @@
 							<form>
 								<p>
 									<label for="name" >Nom : </label>
-									<input type="text" name="name" id="name" required />
+									<input type="text" name="name" id="name" required class="form_identity" />
 								</p>
 								<p>
 									<label for="firstname" >Prénom : </label>
-									<input type="text" name="firstname" id="firstname" required />
+									<input type="text" name="firstname" id="firstname" required class="form_identity" />
 								</p>
-								<input type="submit" value="Réserver" id="submit" disabled />
-								<div id="signature">
-									<h4>Signature</h4>
-									<canvas width="150" height="150"></canvas>
-									<button type="button" id="clear">Effacer</button>
-								</div>
-								<div></div>
+								<input type="submit" id="submit" value="Réserver" disabled / >
+								<h4>Signature</h4>
+								<canvas width="150" height="150">Désolé, votre navigateur ne prend pas en compte le canvas.</canvas>
+								<button type="button" id="clear">Effacer</button>
 							</form>
 							<p id="bloc_timer"></p>
 						</div>
