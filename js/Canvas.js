@@ -1,5 +1,8 @@
 /* Source : https://codepen.io/Zonecss/pen/dqvXNo */
 
+/*
+	Crée l'espace réservé à la sgnature de l'utilisateur.
+*/
 class Canvas {
 
 	constructor() {

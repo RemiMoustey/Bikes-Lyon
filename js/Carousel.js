@@ -1,5 +1,10 @@
+/*
+	Cette classe met en place le diaporama présent en haut de la page.
+*/
+
 class Carousel {
 
+	// Crée l'objet et ses conteneurs et met à disposition le tableau des slides. 
 	constructor(element) {
 		this.element = element;
 		this.element.classList.add("carousel");
@@ -23,6 +28,12 @@ class Carousel {
 		this.createNavigation();
 	}
 
+	/*
+		- Met en place les boutons permettant de naviguer dans le diaporama.
+		- Écoute les événements issus de l'interaction de l'utilisateur avec le programme
+		(clics sur les boutons, changements de slide avec le clavier).
+		- Appelle les fonctions nécessaires au fonctionnement des animations.
+	*/
 	createNavigation () {
 		let prevArrow = this.createDivWithClass("carousel_prev");
 		let nextArrow = this.createDivWithClass("carousel_next");
@@ -67,6 +78,11 @@ class Carousel {
 		});
 	}
 
+	/*
+	Les deux méthodes suivantes préviennent qu'une animation est en cours et appellent
+	la méthode permettant l'apparition et le glissement du nouvel élément. 
+	Ainsi, aucune animation ne peut être déclenchée si une autre animation est en cours.
+	*/
 	prev() {
 		if(this.animationStop === true) {
 			this.animationStop = false;
@@ -81,6 +97,11 @@ class Carousel {
 		}
 	}
 
+	/*
+		Les deux méthodes suivantes appellent les méthodes :
+		- qui sélectionnent le slide suivant
+		- qui déterminent la direction du slide suivant selon qu'il s'agit du précédent ou du suivant.
+	*/
 	determinePrevNewItem() {
 		if(document.querySelector("img").classList.contains("item_1")) {
 			this.newItem(4);
@@ -111,6 +132,7 @@ class Carousel {
 		}
 	}
 
+	// Sélectionne (grâce au tableau this.items) et crée le nouveau slide après un changement automatique ou par l'utilisateur.
 	newItem(range) {
 		let item = document.createElement("div");
 		item.id = "carousel_item";
@@ -127,6 +149,7 @@ class Carousel {
 		document.querySelector(".carousel_container").replaceChild(item, document.getElementById("carousel_item"));
 	}
 
+	// Détermine la direction du nouveau slide.
 	prevNew() {
 		this.directionNewItem(1);
 	}
@@ -135,6 +158,7 @@ class Carousel {
 		this.directionNewItem(-1);
 	}
 
+	// Définit l'animation du nouveau slide jusqu'à son arrêt.
 	directionNewItem(direction) {
 		let xItem = parseFloat(getComputedStyle(document.querySelector(".new_carousel_item")).left);
 		if(direction < 0 && xItem === -1260) {
@@ -173,12 +197,13 @@ class Carousel {
 	}
 
 	createDivWithClass(className) {
-		let div = document.createElement("div");		
+		let div = document.createElement("div");
 		div.classList.add(className);
 		return div;
 	}
 }
 
+// L'événement DOMContentLoaded permet de ne créer le diaporama qu'une fois que le document HTML a été entièrement chargé.
 document.addEventListener('DOMContentLoaded', function() {
 	new Carousel(document.createElement("div"));
 });

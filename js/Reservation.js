@@ -1,7 +1,10 @@
 let intervalId = null;
+/* Variable globale qui permet de rendre le compteur de temps restant à la réservation fonctionnel,
+avec une répétition à un intervalle de temps régulier. */
 
 class Reservation {
 
+	// Cet objet permet d'afficher les informations relatives à la réservation stockées dans le localStorage.
 	constructor(name, firstname) {
 		this.station = $('#address').text();
 		if(this.station !== "") {
@@ -15,6 +18,7 @@ class Reservation {
 		this.buildReservation();
 	}
 
+	// Diminue le compteur toutes les secondes et stocke les information dans la sessionStorage.
 	reduceTime() {
 		let counterSecondsElt = $("#seconds").get(0);
 		let counterMinutesElt = $("#minutes").get(0);
@@ -38,6 +42,7 @@ class Reservation {
 		}
 	}
 
+	// Utilise les informations stockées pour les afficher à l'écran de l'utilisateur.
 	buildReservation() {
 		$('#places_bikes').removeClass("places_bikes_orange");
 		$('#bloc_timer').html("<div class=\"green_background\">Vélo réservé à la station <br />" + "<span id=\"address\">" + sessionStorage.getItem("station") + "</span>" + "<br />par " + localStorage.getItem("firstname") + " " + localStorage.getItem("name") + "</div>");
@@ -54,17 +59,24 @@ class Reservation {
 			sessionStorage.setItem("minutes", counterMinutes);
 			sessionStorage.setItem("seconds", counterSeconds);
 		}
-		let minutes = document.createElement("span");
-		minutes.id = "minutes";
-		minutes.textContent = counterMinutes;
-		let seconds = document.createElement("span");
-		seconds.id = "seconds";
-		seconds.textContent = counterSeconds;
-		$('#bloc_timer').append(document.createElement("br"));
-		$('#bloc_timer').append("Temps restant : ");
-		$('#bloc_timer').append(minutes, "min ");
-		$('#bloc_timer').append(seconds, "s");
+		let minutesElt = document.createElement("span");
+		minutesElt.id = "minutes";
+		minutesElt.textContent = counterMinutes;
+		let secondsElt = document.createElement("span");
+		secondsElt.id = "seconds";
+		secondsElt.textContent = counterSeconds;
+		let clockElt = this.createDivWithClass("clock");
+		$("#bloc_timer").append(clockElt);
+		$(".clock").append("Temps restant : ");
+		$(".clock").append(minutesElt, "min ");
+		$(".clock").append(secondsElt, "s.");
 		intervalId = setInterval(this.reduceTime, 1000);
+	}
+
+	createDivWithClass(className) {
+		let div = document.createElement("div");		
+		div.classList.add(className);
+		return div;
 	}
 }
 
@@ -77,7 +89,7 @@ if (sessionStorage.getItem("minutes") !== "" && sessionStorage.getItem("seconds"
 }
 
 $('form').on("submit", function(e) {
-	clearInterval(intervalId); /* Pour qu'il n'y ait qu'un seul intervalle en cours */
+	clearInterval(intervalId); // Pour qu'il n'y ait qu'un seul intervalle en cours.
 	e.preventDefault();
 	let name = form.elements.name.value;
 	let firstname = form.elements.firstname.value;
