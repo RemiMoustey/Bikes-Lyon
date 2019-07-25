@@ -4,8 +4,6 @@ class Canvas {
 
 	constructor() {
 		this.canvas = $('canvas').get(0);
-
-		console.log(this.canvas);
 		if(this.canvas.getContext) {
 			const ctx = this.canvas.getContext("2d");
 			ctx.strokeRect(0, 0, 150, 150);
