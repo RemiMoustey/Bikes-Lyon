@@ -45,7 +45,7 @@ class Reservation {
 	// Utilise les informations stockées pour les afficher à l'écran de l'utilisateur.
 	buildReservation() {
 		$('#places_bikes').removeClass("places_bikes_orange");
-		$('#bloc_timer').html("<div class=\"green_background\">Vélo réservé à la station <br />" + "<span id=\"address\">" + sessionStorage.getItem("station") + "</span>" + "<br />par " + localStorage.getItem("firstname") + " " + localStorage.getItem("name") + "</div>");
+		$('#bloc_timer').html("<div class=\"green_background\">Vélo réservé à la station <br />" + sessionStorage.getItem("station") + "<br />par " + localStorage.getItem("firstname") + " " + localStorage.getItem("name") + "</div>");
 		$('#submit').attr("disabled", "");
 		let counterMinutes = sessionStorage.getItem("minutes");
 		let counterSeconds = sessionStorage.getItem("seconds");
