@@ -9,14 +9,14 @@ class MapStations {
 	constructor() {
 		this.greenIcon = L.icon({
 			iconUrl: "images/green_bike.png",
-			iconSize: [20, 25],
-			iconAnchor: [10, 25]
+			iconSize: [18, 25],
+			iconAnchor: [9, 25]
 		});
 
 		this.redIcon = L.icon({
 			iconUrl: "images/red_bike.png",
-			iconSize: [20, 25],
-			iconAnchor: [10, 25]
+			iconSize: [18, 25],
+			iconAnchor: [9, 25]
 		});
 
 		this.background = this.getBackgroundMap();
