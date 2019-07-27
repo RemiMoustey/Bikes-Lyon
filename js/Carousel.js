@@ -16,7 +16,7 @@ class Carousel {
 		this.items = [this.getItem(this.getImage("images/1.jpg", "Panneau d'enfants sur un vélo légendé 'Welcome'", "item_1"),
 		"Bienvenue sur standvelos-lyon.com !<br />Réservez dès maintenant votre vélo où vous le voulez !"),
 		this.getItem(this.getImage("images/2.png", "Pan de la carte du site et petit cartouche d'explication", "item_2"),
-		"Cliquez sur la station où vous désirez réserver votre vélo sur la carte ci-dessous.<br />Des informations sur la station sont affichés à droite de la carte."),
+		"Cliquez sur la station où vous désirez réserver votre vélo sur la carte ci-dessous.<br />Des informations sur la station sont affichées à droite de la carte."),
 		this.getItem(this.getImage("images/3.png", "Formulaire à côté de la carte avec les champs 'Nom' et 'Prénom'", "item_3"),
 		"Entrez votre nom et votre prénom dans le formulaire prévu à cet effet.<br />Ces champs sont obligatoires pour mener à bien votre réservation."),
 		this.getItem(this.getImage("images/4.png", "Le champ de signature sous le formulaire", "item_4"),
