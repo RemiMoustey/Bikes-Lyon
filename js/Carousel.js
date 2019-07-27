@@ -20,7 +20,7 @@ class Carousel {
 		this.getItem(this.getImage("images/3.png", "Formulaire à côté de la carte avec les champs 'Nom' et 'Prénom'", "item_3"),
 		"Entrez votre nom et votre prénom dans le formulaire prévu à cet effet.<br />Ces champs sont obligatoires pour mener à bien votre réservation."),
 		this.getItem(this.getImage("images/4.png", "Le champ de signature sous le formulaire", "item_4"),
-		"Enfin, signez dans le cadre dédié à cet effet et cliquez sur 'Réservez'.<br />Votre vélo vous attend ! Toute nouvelle réservation annulera la précédente."),
+		"Enfin, signez dans le cadre dédié à cet effet et cliquez sur 'Réserver'.<br />Votre vélo vous attend ! Toute nouvelle réservation annulera la précédente."),
 		this.getItem(this.getImage("images/5.png", "Compteur de 20 minutes qui symbolise le temps de la réservation", "item_5"),
 		"Vous n'avez plus qu'à vous rendre sur place !<br />Le temps restant de votre réservation s'affiche sur votre écran !")];
 		this.animationId = null;
