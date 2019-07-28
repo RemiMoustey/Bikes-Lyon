@@ -9,14 +9,14 @@ class MapStations {
 	constructor() {
 		this.greenIcon = L.icon({
 			iconUrl: "images/green_bike.png",
-			iconSize: [18, 25],
-			iconAnchor: [9, 25]
+			iconSize: [26, 40],
+			iconAnchor: [13, 40]
 		});
 
 		this.redIcon = L.icon({
 			iconUrl: "images/red_bike.png",
-			iconSize: [18, 25],
-			iconAnchor: [9, 25]
+			iconSize: [26, 40],
+			iconAnchor: [13, 40]
 		});
 
 		this.background = this.getBackgroundMap();
@@ -25,7 +25,7 @@ class MapStations {
 
 	// Renvoie le fond de la carte.
 	getBackgroundMap() {
-		let background = L.map('mapid').setView([45.7539, 4.84699], 13);
+		let background = L.map('mapid').setView([45.762, 4.854], 13);
 
 		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
 		    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
