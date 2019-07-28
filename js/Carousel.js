@@ -13,7 +13,7 @@ class Carousel {
 		this.container.appendChild(document.getElementById("carousel_item"));
 		this.slides.appendChild(this.container);
 		document.getElementById("bloc_page").insertBefore(this.element, document.getElementById("map_panel"));
-		this.items = [this.getItem(this.getImage("images/1.jpg", "Panneau d'enfants sur un vélo légendé 'Welcome'", "item_1"),
+		this.items = [this.getItem(this.getImage("images/1.png", "Lion à vélo sur photo de Lyon", "item_1"),
 		"Bienvenue sur lyonavelo.com !<br />Réservez dès maintenant votre vélo où vous le voulez !"),
 		this.getItem(this.getImage("images/2.png", "Pan de la carte du site et petit cartouche d'explication", "item_2"),
 		"Cliquez sur la station où vous désirez réserver votre vélo sur la carte ci-dessous.<br />Des informations sur la station sont affichées à droite de la carte."),
