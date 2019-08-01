@@ -62,7 +62,7 @@ class MapStations {
 		let stations =  await this.getStations();
 		for(let station of stations) {
 			if(station.status === "OPEN" && station.available_bikes > 0) {
-				let marker = L.marker([station.position.lat, station.position.lng], {icon: this.greenIcon}, {title: 'Bop'});
+				let marker = L.marker([station.position.lat, station.position.lng], {icon: this.greenIcon});
 				marker.addTo(this.background);
 				marker.on("click", function() {
 					$('#red_station').text('');
@@ -82,7 +82,7 @@ class MapStations {
 				});
 			}
 			else if(station.status === "CLOSED" || station.available_bikes === 0) {
-				let marker = L.marker([station.position.lat, station.position.lng], {icon: this.redIcon}, {title: station.address});
+				let marker = L.marker([station.position.lat, station.position.lng], {icon: this.redIcon});
 				marker.addTo(this.background);
 				marker.on("click", function() {
 					$('#address').text(station.address);
