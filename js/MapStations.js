@@ -10,13 +10,15 @@ class MapStations {
 		this.greenIcon = L.icon({
 			iconUrl: "images/green_bike.png",
 			iconSize: [26, 40],
-			iconAnchor: [13, 40]
+			iconAnchor: [13, 40],
+			popupAnchor: [0, -32]
 		});
 
 		this.redIcon = L.icon({
 			iconUrl: "images/red_bike.png",
 			iconSize: [26, 40],
-			iconAnchor: [13, 40]
+			iconAnchor: [13, 40],
+			popupAnchor: [0, -32]
 		});
 
 		this.background = this.getBackgroundMap();
@@ -64,6 +66,11 @@ class MapStations {
 			if(station.status === "OPEN" && station.available_bikes > 0) {
 				let marker = L.marker([station.position.lat, station.position.lng], {icon: this.greenIcon});
 				marker.addTo(this.background);
+				let popup = L.popup();
+				marker.on('mouseover', function() {
+					popup.setContent(station.address);
+					this.bindPopup(popup).openPopup();
+				});
 				marker.on("click", function() {
 					$('#red_station').text('');
 					$('#address').text(station.address);
@@ -84,6 +91,11 @@ class MapStations {
 			else if(station.status === "CLOSED" || station.available_bikes === 0) {
 				let marker = L.marker([station.position.lat, station.position.lng], {icon: this.redIcon});
 				marker.addTo(this.background);
+				let popup = L.popup();
+				marker.on('mouseover', function() {
+					popup.setContent(station.address);
+					this.bindPopup(popup).openPopup();
+				});
 				marker.on("click", function() {
 					$('#address').text(station.address);
 					$('#number_places').text('');
