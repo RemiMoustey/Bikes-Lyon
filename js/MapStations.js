@@ -64,6 +64,7 @@ class MapStations {
 			if(station.status === "OPEN" && station.available_bikes > 0) {
 				let marker = L.marker([station.position.lat, station.position.lng], {icon: this.greenIcon});
 				marker.addTo(this.background);
+				marker.title(station.address);
 				marker.on("click", function() {
 					$('#red_station').text('');
 					$('#address').text(station.address);
