@@ -62,7 +62,7 @@ class MapStations {
 		let stations =  await this.getStations();
 		for(let station of stations) {
 			if(station.status === "OPEN" && station.available_bikes > 0) {
-				let marker = L.marker([station.position.lat, station.position.lng], {icon: this.greenIcon}, {title: station.address});
+				let marker = L.marker([station.position.lat, station.position.lng], {icon: this.greenIcon}, {title: 'Bop'});
 				marker.addTo(this.background);
 				marker.on("click", function() {
 					$('#red_station').text('');
