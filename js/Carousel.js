@@ -176,7 +176,6 @@ class Carousel {
 				document.querySelector(".new_carousel_item").classList.remove("new_carousel_item");
 			}
 		}
-
 		else {
 			if(xItem > 70) {
 				this.animationId = requestAnimationFrame(this.nextNew.bind(this));
