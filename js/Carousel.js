@@ -136,7 +136,7 @@ class Carousel {
 	newItem(range) {
 		let item = document.createElement("div");
 		item.id = "carousel_item";
-		item.classList.add("new_carousel_item")
+		item.classList.add("new_carousel_item");
 		let image = this.createDivWithClass("carousel_image");
 		let text = this.createDivWithClass("carousel_text");
 		item.appendChild(image);

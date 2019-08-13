@@ -52,7 +52,7 @@ class Canvas {
 		if(canvas.bDraw === false) {
 			return false;
 		}
-		pos = this.getPosition(event, canvas);
+		pos = this.getPosition(e, canvas);
 		ctx = canvas.getContext("2d");
 		ctx.lineWidth = 4;
 		ctx.strokeStyle = "#000000";
@@ -67,7 +67,7 @@ class Canvas {
 
 	clearDraw(e) {
 		if(this.canvas.getContext) {
-			let ctx = this.canvas.getContext('2d')
+			let ctx = this.canvas.getContext('2d');
 			ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 			ctx.strokeRect(0, 0, 150, 150);
 			$('#submit').attr("disabled", "");
