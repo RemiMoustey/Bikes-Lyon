@@ -65,15 +65,27 @@ class Carousel {
 			document.querySelector(".pause_button").classList.replace("fa-play", "fa-pause");
 		});
 
-		nextArrow.addEventListener("click", callNext);
-		prevArrow.addEventListener("click", callPrev);
+		nextArrow.addEventListener("click", function (e) {
+			clearInterval(intervalId);
+			callNext();
+			intervalId = setInterval(callNext, 5000);
+		});
+		prevArrow.addEventListener("click", function(e) {
+			clearInterval(intervalId);
+			callPrev();
+			intervalId = setInterval(callNext, 5000);
+		});
 
 		document.addEventListener("keydown", function (e) {
 			if(e.keyCode === 37) {
+				clearInterval(intervalId);
 				callPrev();
+				intervalId = setInterval(callNext, 5000);
 			}
 			else if(e.keyCode === 39) {
+				clearInterval(intervalId);
 				callNext();
+				intervalId = setInterval(callNext, 5000);
 			}
 		});
 	}
