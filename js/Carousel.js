@@ -65,12 +65,12 @@ class Carousel {
 			document.querySelector(".pause_button").classList.replace("fa-play", "fa-pause");
 		});
 
-		nextArrow.addEventListener("click", function (e) {
+		nextArrow.addEventListener("click", function () {
 			clearInterval(intervalId);
 			callNext();
 			intervalId = setInterval(callNext, 5000);
 		});
-		prevArrow.addEventListener("click", function(e) {
+		prevArrow.addEventListener("click", function() {
 			clearInterval(intervalId);
 			callPrev();
 			intervalId = setInterval(callNext, 5000);
